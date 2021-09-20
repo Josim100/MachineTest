@@ -1,0 +1,49 @@
+﻿@using System.Data;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Search</title>
+</head>
+<body>
+    <div>
+        <form action="/Management/Search" method="get">
+
+            <div class="form-group">
+                <label for="Country">Country:</label>
+                @Html.DropDownList("CountryCode", null, "---Select Country----")
+            </div>
+            <div class="form-group">
+                <label for="City">City:</label>
+                @Html.DropDownList("CityCode", null, "---Select City----")
+            </div>
+            <div class="form-group">
+                <label for="Product">Product:</label>
+                @Html.DropDownList("ProductID", "---Select Product-----")
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+    </div>
+    @if ((ViewBag.search as DataTable).Rows.Count > 0)
+    {
+        foreach (DataRow dr in (ViewBag.search as DataTable).Rows)
+        {
+
+
+            <p>@dr["CustomerName"]</p>
+            <p>@dr["RegionCode"]</p>
+            <p>@dr["CityCode"]</p>
+            <p>@dr["DateofSale"]</p>
+            <p>@dr["ProductName"]</p>
+            <p>@dr["Quanty"]</p>
+            <p>@dr["CreationDate"]</p>
+
+        }
+    }
+</body>
+</html>
